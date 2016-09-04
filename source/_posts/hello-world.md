@@ -1,6 +1,6 @@
 ---
 title: Hello World
-date: 2016-9-4 15:03:34
+date: 2016-09-04 15:03:34
 tags: 
 - Javascript
 - Jquery
