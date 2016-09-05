@@ -1,7 +1,7 @@
 ---
 title: 网页发布到Github之后，子页面全用http打开而失效 
 date: 2016-09-05 00:26:35
-categoris: Github
+categories: Github
 tags:
   - Github
   - http
