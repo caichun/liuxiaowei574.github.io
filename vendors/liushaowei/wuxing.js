@@ -157,7 +157,7 @@ var WanNianLi = (function() {
 	 */
 	function getYueGanIndex(nianGanIndex, lMonth) {
 		var index = Number(nianGanIndex) * 2 + Number(lMonth);
-		index %= 10;
+		index > 10 && (index %= 10);
 		return index;
 	}
 	/**
