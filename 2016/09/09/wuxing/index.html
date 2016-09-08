@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Javascript,生活," />
 
 
 
@@ -84,15 +84,22 @@
 
 
 
-<meta name="description" content="清风明月的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="清风明月">
-<meta property="og:url" content="https://liuxiaowei574.github.io/index.html">
+<meta name="description" content="前段时间宝宝出生了，兴奋之余，一直忙着给宝宝选名字，想起网上各式各样的五行查询，出于好奇研究了下算法，于是自己也试着写了个小程序。先上张截图：
+当然，首先就要先理解最基本的，什么是天干地支，什么是生辰八字，什么是五行。
+1. 什么是天干地支天干地支，简称为干支，源自远古时代对天象的观测。”甲、乙、丙、丁、戊、己、庚、辛、壬、癸”称为十天干，”子、丑、寅、卯、辰、巳、午、未、申、酉、戌、亥”称为十二">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript实现生辰八字五行查询">
+<meta property="og:url" content="https://liuxiaowei574.github.io/2016/09/09/wuxing/index.html">
 <meta property="og:site_name" content="清风明月">
-<meta property="og:description" content="清风明月的博客">
+<meta property="og:description" content="前段时间宝宝出生了，兴奋之余，一直忙着给宝宝选名字，想起网上各式各样的五行查询，出于好奇研究了下算法，于是自己也试着写了个小程序。先上张截图：
+当然，首先就要先理解最基本的，什么是天干地支，什么是生辰八字，什么是五行。
+1. 什么是天干地支天干地支，简称为干支，源自远古时代对天象的观测。”甲、乙、丙、丁、戊、己、庚、辛、壬、癸”称为十天干，”子、丑、寅、卯、辰、巳、午、未、申、酉、戌、亥”称为十二">
+<meta property="og:updated_time" content="2016-09-08T18:50:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="清风明月">
-<meta name="twitter:description" content="清风明月的博客">
+<meta name="twitter:title" content="Javascript实现生辰八字五行查询">
+<meta name="twitter:description" content="前段时间宝宝出生了，兴奋之余，一直忙着给宝宝选名字，想起网上各式各样的五行查询，出于好奇研究了下算法，于是自己也试着写了个小程序。先上张截图：
+当然，首先就要先理解最基本的，什么是天干地支，什么是生辰八字，什么是五行。
+1. 什么是天干地支天干地支，简称为干支，源自远古时代对天象的观测。”甲、乙、丙、丁、戊、己、庚、辛、壬、癸”称为十天干，”子、丑、寅、卯、辰、巳、午、未、申、酉、戌、亥”称为十二">
 
 
 
@@ -110,7 +117,7 @@
   };
 </script>
 
-  <title> 清风明月 </title>
+  <title> Javascript实现生辰八字五行查询 | 清风明月 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -141,9 +148,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -260,9 +265,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -282,10 +287,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/09/09/wuxing/" itemprop="url">
-                  Javascript实现生辰八字五行查询
-                </a>
+                Javascript实现生辰八字五行查询
               
             
           </h1>
@@ -340,6 +342,11 @@
           
 
           
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
         </div>
       </header>
     
@@ -351,9 +358,7 @@
       
 
       
-        
-          
-            <p>前段时间宝宝出生了，兴奋之余，一直忙着给宝宝选名字，想起网上各式各样的五行查询，出于好奇研究了下算法，于是自己也试着写了个小程序。先上张截图：</p>
+        <p>前段时间宝宝出生了，兴奋之余，一直忙着给宝宝选名字，想起网上各式各样的五行查询，出于好奇研究了下算法，于是自己也试着写了个小程序。先上张截图：</p>
 <p>当然，首先就要先理解最基本的，什么是天干地支，什么是生辰八字，什么是五行。</p>
 <h2 id="1-什么是天干地支"><a href="#1-什么是天干地支" class="headerlink" title="1. 什么是天干地支"></a>1. 什么是天干地支</h2><p>天干地支，简称为干支，源自远古时代对天象的观测。”甲、乙、丙、丁、戊、己、庚、辛、壬、癸”称为十天干，”子、丑、寅、卯、辰、巳、午、未、申、酉、戌、亥”称为十二地支。天干地支组成形成了古代纪年历法。十干和十二支依次相配，组成六十个基本单位，两者按固定的顺序相互配合，组成了<strong>干支纪法</strong>。</p>
 <h2 id="2-什么是生辰八字"><a href="#2-什么是生辰八字" class="headerlink" title="2. 什么是生辰八字"></a>2. 什么是生辰八字</h2><p>生辰八字，简称八字，是指一个人出生时的干支历日期；年月日时共四柱干支，每柱两字，合共八个字，故称。生辰八字在汉族民俗信仰中占有重要地位，古代汉族星相家据此推算人的命运的好坏。在历书中，年的干支与日的干支基本都有，而月与时的天干可以依据年、日的干支按口诀推算得出。<br>上面说的<strong>年月日时干支</strong>，意思是把日期分成四部分：年、月、日、时。而每个日期又有天干和地支两部分，因此合起来就是：年干、年支、月干、月支、天干、天支、时干、时支。<br>众所周知，一个时辰是两个小时，具体的对应关系如下：</p>
@@ -503,284 +508,60 @@
 <p>完整Demo点击下面链接：</p>
 <p><a href="https://liuxiaowei574.github.io/wuxing.html">时辰八字五行分析</a></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/05/github-http-problem/" itemprop="url">
-                  网页发布到Github之后，子页面全用http打开而失效
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-05T00:26:35+08:00" content="2016-09-05">
-              2016-09-05
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Github/" itemprop="url" rel="index">
-                    <span itemprop="name">Github</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
+            <a href="/tags/Javascript/" rel="tag">#Javascript</a>
           
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/05/github-http-problem/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/05/github-http-problem/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/生活/" rel="tag">#生活</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>不知道是我配置的原因，还是发布的有问题。网页发布到Github后，点击首页的菜单全是以http协议打开，因此子页面全都找不到，而本机运行则一切正常。今天下午发现的这个问题，试了试别人的blog，貌似也有这个问题，着实令人费解。如果有知道的朋友，还请帮忙指正一下。多谢。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/09/05/github-http-problem/" rel="next" title="网页发布到Github之后，子页面全用http打开而失效">
+                <i class="fa fa-chevron-left"></i> 网页发布到Github之后，子页面全用http打开而失效
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/09/04/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-04T15:03:34+08:00" content="2016-09-04">
-              2016-09-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/04/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/04/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -788,6 +569,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/09/wuxing/"
+           data-title="Javascript实现生辰八字五行查询" data-url="https://liuxiaowei574.github.io/2016/09/09/wuxing/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -807,8 +596,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -878,6 +676,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是天干地支"><span class="nav-number">1.</span> <span class="nav-text">1. 什么是天干地支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-什么是生辰八字"><span class="nav-number">2.</span> <span class="nav-text">2. 什么是生辰八字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-什么是五行"><span class="nav-number">3.</span> <span class="nav-text">3. 什么是五行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-怎么知道哪个时辰的八字都是什么"><span class="nav-number">4.</span> <span class="nav-text">4. 怎么知道哪个时辰的八字都是什么</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -997,6 +806,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
