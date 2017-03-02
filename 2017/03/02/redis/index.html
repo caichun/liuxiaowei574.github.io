@@ -84,15 +84,47 @@
 
 
 
-<meta name="description" content="清风明月的博客">
-<meta property="og:type" content="website">
+<meta name="description" content="Redis官网：https://redis.io/
+一、架构操作系统：Debian 7
+Master：127.0.0.1，端口：6379
+Slave1：:127.0.0.1，端口：6378
+Slave2：:127.0.0.1，端口：6377
+Sentinel1：127.0.0.1，端口：26379
+Sentinel2：127.0.0.1，端口：26378
+Sentinel3：127.0.0.1，端">
+<meta property="og:type" content="article">
 <meta property="og:title" content="清风明月">
-<meta property="og:url" content="https://liuxiaowei574.github.io/index.html">
+<meta property="og:url" content="https://liuxiaowei574.github.io/2017/03/02/redis/index.html">
 <meta property="og:site_name" content="清风明月">
-<meta property="og:description" content="清风明月的博客">
+<meta property="og:description" content="Redis官网：https://redis.io/
+一、架构操作系统：Debian 7
+Master：127.0.0.1，端口：6379
+Slave1：:127.0.0.1，端口：6378
+Slave2：:127.0.0.1，端口：6377
+Sentinel1：127.0.0.1，端口：26379
+Sentinel2：127.0.0.1，端口：26378
+Sentinel3：127.0.0.1，端">
+<meta property="og:image" content="https://liuxiaowei574.github.io/images/redis/01.png">
+<meta property="og:image" content="https://liuxiaowei574.github.io/images/redis/02.png">
+<meta property="og:image" content="https://liuxiaowei574.github.io/images/redis/03.png">
+<meta property="og:image" content="https://liuxiaowei574.github.io/images/redis/04.png">
+<meta property="og:image" content="https://liuxiaowei574.github.io/images/redis/05.png">
+<meta property="og:image" content="https://liuxiaowei574.github.io/images/redis/06.png">
+<meta property="og:image" content="https://liuxiaowei574.github.io/images/redis/07.png">
+<meta property="og:image" content="https://liuxiaowei574.github.io/images/redis/08.png">
+<meta property="og:image" content="https://liuxiaowei574.github.io/images/redis/09.png">
+<meta property="og:updated_time" content="2017-03-02T13:28:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="清风明月">
-<meta name="twitter:description" content="清风明月的博客">
+<meta name="twitter:description" content="Redis官网：https://redis.io/
+一、架构操作系统：Debian 7
+Master：127.0.0.1，端口：6379
+Slave1：:127.0.0.1，端口：6378
+Slave2：:127.0.0.1，端口：6377
+Sentinel1：127.0.0.1，端口：26379
+Sentinel2：127.0.0.1，端口：26378
+Sentinel3：127.0.0.1，端">
+<meta name="twitter:image" content="https://liuxiaowei574.github.io/images/redis/01.png">
 
 
 
@@ -110,7 +142,7 @@
   };
 </script>
 
-  <title> 清风明月 </title>
+  <title>  | 清风明月 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -141,9 +173,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -260,9 +290,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -283,9 +313,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/02/redis/" itemprop="url">
-                  未命名
-                </a>
               
             
           </h1>
@@ -321,6 +348,11 @@
           
 
           
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
         </div>
       </header>
     
@@ -332,9 +364,7 @@
       
 
       
-        
-          
-            <p>Redis官网：<a href="https://redis.io/" target="_blank" rel="external">https://redis.io/</a></p>
+        <p>Redis官网：<a href="https://redis.io/" target="_blank" rel="external">https://redis.io/</a></p>
 <h2 id="一、架构"><a href="#一、架构" class="headerlink" title="一、架构"></a>一、架构</h2><p>操作系统：Debian 7</p>
 <p>Master：127.0.0.1，端口：6379</p>
 <p>Slave1：:127.0.0.1，端口：6378</p>
@@ -389,16 +419,19 @@
 <h5 id="3、观察slave1节点的输出信息，说明它已经切换到master状态："><a href="#3、观察slave1节点的输出信息，说明它已经切换到master状态：" class="headerlink" title="3、观察slave1节点的输出信息，说明它已经切换到master状态："></a>3、观察slave1节点的输出信息，说明它已经切换到master状态：</h5><p><img src="/images/redis/09.png" alt=""> </p>
 <p>至此，Redis的主从集群、故障自动切换机制已经完成。</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -406,391 +439,32 @@
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/09/09/wuxing/" rel="next" title="Javascript实现生辰八字五行查询">
+                <i class="fa fa-chevron-left"></i> Javascript实现生辰八字五行查询
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/09/09/wuxing/" itemprop="url">
-                  Javascript实现生辰八字五行查询
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-09T02:17:44+08:00" content="2016-09-09">
-              2016-09-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/09/wuxing/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/09/wuxing/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>前段时间宝宝出生了，兴奋之余，一直忙着给宝宝选名字，想起网上各式各样的五行查询，出于好奇研究了下算法，于是自己也试着写了个小程序。先上张截图：</p>
-<p><img src="/images/wuxing.png" alt="“五行分析”"> </p>
-<p>当然，首先就要先理解最基本的，什么是天干地支，什么是生辰八字，什么是五行。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/09/wuxing/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/05/github-http-problem/" itemprop="url">
-                  网页发布到Github之后，子页面全用http打开而失效
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-05T00:26:35+08:00" content="2016-09-05">
-              2016-09-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Github/" itemprop="url" rel="index">
-                    <span itemprop="name">Github</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/05/github-http-problem/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/05/github-http-problem/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>不知道是我配置的原因，还是发布的有问题。网页发布到Github后，点击首页的菜单全是以http协议打开，因此子页面全都找不到，而本机运行则一切正常。今天下午发现的这个问题，试了试别人的blog，貌似也有这个问题，着实令人费解。如果有知道的朋友，还请帮忙指正一下。多谢。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/04/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-04T15:03:34+08:00" content="2016-09-04">
-              2016-09-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/04/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/04/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -798,6 +472,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/02/redis/"
+           data-title="" data-url="https://liuxiaowei574.github.io/2017/03/02/redis/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -817,8 +499,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -888,6 +579,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、架构"><span class="nav-number">1.</span> <span class="nav-text">一、架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、主从配置"><span class="nav-number">2.</span> <span class="nav-text">二、主从配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、下载redis压缩包，并解压，我这里下载的是2-8-24版本："><span class="nav-number">2.0.0.1.</span> <span class="nav-text">1、下载redis压缩包，并解压，我这里下载的是2.8.24版本：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、进入解压目录，修改配置文件redis-conf："><span class="nav-number">2.0.0.2.</span> <span class="nav-text">2、进入解压目录，修改配置文件redis.conf：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、其他保持默认，为客户端连接增加密码为fish："><span class="nav-number">2.0.0.3.</span> <span class="nav-text">3、其他保持默认，为客户端连接增加密码为fish：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、拷贝一份redis-2-8-24目录的副本，命名为redis-2-8-24-slave1："><span class="nav-number">2.0.0.4.</span> <span class="nav-text">4、拷贝一份redis-2.8.24目录的副本，命名为redis-2.8.24-slave1：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5、进入上面目录，修改配置文件redis-conf："><span class="nav-number">2.0.0.5.</span> <span class="nav-text">5、进入上面目录，修改配置文件redis.conf：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6、分别进行以下修改："><span class="nav-number">2.0.0.6.</span> <span class="nav-text">6、分别进行以下修改：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7、同样的步骤再复制一份redis-2-8-24-slave2目录，并修改配置文件："><span class="nav-number">2.0.0.7.</span> <span class="nav-text">7、同样的步骤再复制一份redis-2.8.24-slave2目录，并修改配置文件：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8、测试集群配置"><span class="nav-number">2.0.0.8.</span> <span class="nav-text">8、测试集群配置</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1）启动master节点："><span class="nav-number">2.0.0.8.1.</span> <span class="nav-text">1）启动master节点：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2）启动slave1节点"><span class="nav-number">2.0.0.8.2.</span> <span class="nav-text">2）启动slave1节点</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3）新开一个终端，同样方式启动slave2。"><span class="nav-number">2.0.0.8.3.</span> <span class="nav-text">3）新开一个终端，同样方式启动slave2。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4）客户端连接master节点，查看信息"><span class="nav-number">2.0.0.8.4.</span> <span class="nav-text">4）客户端连接master节点，查看信息</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5）客户端连接slave节点，查看信息"><span class="nav-number">2.0.0.8.5.</span> <span class="nav-text">5）客户端连接slave节点，查看信息</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Sentinel集群配置"><span class="nav-number">3.</span> <span class="nav-text">三、Sentinel集群配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、Redis-Sentinel"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">1、Redis Sentinel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、进入redis目录，修改sentinel配置文件"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">2、进入redis目录，修改sentinel配置文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、复制两份sentinel-conf，分别命名为sentinel23678-conf，sentinel23677-conf："><span class="nav-number">3.0.0.3.</span> <span class="nav-text">3、复制两份sentinel.conf，分别命名为sentinel23678.conf，sentinel23677.conf：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、运行redis-sentinel"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">4、运行redis-sentinel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5、通过sentinel查看主从信息："><span class="nav-number">3.0.0.5.</span> <span class="nav-text">5、通过sentinel查看主从信息：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、测试故障切换配置"><span class="nav-number">4.</span> <span class="nav-text">四、测试故障切换配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、停掉master节点"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">1、停掉master节点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、观察sentinel的输出信息，会看到已经检测到变化，slave1节点（6378端口）自动切换为master："><span class="nav-number">4.0.0.2.</span> <span class="nav-text">2、观察sentinel的输出信息，会看到已经检测到变化，slave1节点（6378端口）自动切换为master：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、观察slave1节点的输出信息，说明它已经切换到master状态："><span class="nav-number">4.0.0.3.</span> <span class="nav-text">3、观察slave1节点的输出信息，说明它已经切换到master状态：</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -1007,6 +709,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
