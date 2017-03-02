@@ -284,7 +284,7 @@
               
                 
                 <a class="post-title-link" href="/2017/03/02/redis/" itemprop="url">
-                  未命名
+                  Redis主从集群及故障自动切换
                 </a>
               
             
@@ -297,11 +297,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-02T21:31:27+08:00" content="2017-03-02">
+            <time itemprop="dateCreated" datetime="2017-03-02T21:38:02+08:00" content="2017-03-02">
               2017-03-02
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -333,8 +352,7 @@
 
       
         
-          
-            <p>Redis官网：<a href="https://redis.io/" target="_blank" rel="external">https://redis.io/</a></p>
+          <p>Redis官网：<a href="https://redis.io/">https://redis.io/</a></p>
 <h2 id="一、架构"><a href="#一、架构" class="headerlink" title="一、架构"></a>一、架构</h2><p>操作系统：Debian 7</p>
 <p>Master：127.0.0.1，端口：6379</p>
 <p>Slave1：:127.0.0.1，端口：6378</p>
@@ -343,53 +361,11 @@
 <p>Sentinel2：127.0.0.1，端口：26378</p>
 <p>Sentinel3：127.0.0.1，端口：26377</p>
 <h2 id="二、主从配置"><a href="#二、主从配置" class="headerlink" title="二、主从配置"></a>二、主从配置</h2><h5 id="1、下载redis压缩包，并解压，我这里下载的是2-8-24版本："><a href="#1、下载redis压缩包，并解压，我这里下载的是2-8-24版本：" class="headerlink" title="1、下载redis压缩包，并解压，我这里下载的是2.8.24版本："></a>1、下载redis压缩包，并解压，我这里下载的是2.8.24版本：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf redis-2.8.24.tar.gz</div></pre></td></tr></table></figure>
-<h5 id="2、进入解压目录，修改配置文件redis-conf："><a href="#2、进入解压目录，修改配置文件redis-conf：" class="headerlink" title="2、进入解压目录，修改配置文件redis.conf："></a>2、进入解压目录，修改配置文件<code>redis.conf</code>：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> redis-2.8.24</div><div class="line">vi redis.conf</div></pre></td></tr></table></figure>
-<h5 id="3、其他保持默认，为客户端连接增加密码为fish："><a href="#3、其他保持默认，为客户端连接增加密码为fish：" class="headerlink" title="3、其他保持默认，为客户端连接增加密码为fish："></a>3、其他保持默认，为客户端连接增加密码为<code>fish</code>：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">masterauth fish</div><div class="line">requirepass fish</div></pre></td></tr></table></figure>
-<p>至此，master节点配置完毕。下面开始配置slave节点。</p>
-<h5 id="4、拷贝一份redis-2-8-24目录的副本，命名为redis-2-8-24-slave1："><a href="#4、拷贝一份redis-2-8-24目录的副本，命名为redis-2-8-24-slave1：" class="headerlink" title="4、拷贝一份redis-2.8.24目录的副本，命名为redis-2.8.24-slave1："></a>4、拷贝一份redis-2.8.24目录的副本，命名为<code>redis-2.8.24-slave1</code>：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp  redis-2.8.24  redis-2.8.24-slave1</div></pre></td></tr></table></figure>
-<h5 id="5、进入上面目录，修改配置文件redis-conf："><a href="#5、进入上面目录，修改配置文件redis-conf：" class="headerlink" title="5、进入上面目录，修改配置文件redis.conf："></a>5、进入上面目录，修改配置文件<code>redis.conf</code>：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> redis-2.8.24-slave1</div><div class="line">vi redis.conf</div></pre></td></tr></table></figure>
-<h5 id="6、分别进行以下修改："><a href="#6、分别进行以下修改：" class="headerlink" title="6、分别进行以下修改："></a>6、分别进行以下修改：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">\<span class="comment">#端口</span></div><div class="line">port  6378</div><div class="line"></div><div class="line">\<span class="comment">#设置连接主节点的密码：</span></div><div class="line">masterauth fish</div><div class="line"></div><div class="line">\<span class="comment">#修改路径</span></div><div class="line">dir <span class="string">"/home/fish/redis/redis-2.8.24-slave1/src"</span></div><div class="line"></div><div class="line">\<span class="comment">#配置为slave</span></div><div class="line">slaveof 127.0.0.1 6379</div></pre></td></tr></table></figure>
-<h5 id="7、同样的步骤再复制一份redis-2-8-24-slave2目录，并修改配置文件："><a href="#7、同样的步骤再复制一份redis-2-8-24-slave2目录，并修改配置文件：" class="headerlink" title="7、同样的步骤再复制一份redis-2.8.24-slave2目录，并修改配置文件："></a>7、同样的步骤再复制一份<code>redis-2.8.24-slave2</code>目录，并修改配置文件：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">port  6377</div><div class="line">masterauth fish</div><div class="line">dir <span class="string">"/home/fish/redis/redis-2.8.24-slave2/src"</span></div><div class="line">slaveof 127.0.0.1 6379</div></pre></td></tr></table></figure>
-<p>至此，两个slave也配置完毕。</p>
-<h5 id="8、测试集群配置"><a href="#8、测试集群配置" class="headerlink" title="8、测试集群配置"></a>8、测试集群配置</h5><h6 id="1）启动master节点："><a href="#1）启动master节点：" class="headerlink" title="1）启动master节点："></a>1）启动master节点：</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span>  redis-2.8.24</div><div class="line">src/redis-server  redis.conf</div></pre></td></tr></table></figure>
-<p>应该可以看到如下界面：</p>
-<p><img src="/images/redis/01.png" alt=""> </p>
-<h6 id="2）启动slave1节点"><a href="#2）启动slave1节点" class="headerlink" title="2）启动slave1节点"></a>2）启动slave1节点</h6><p>新开一个终端并执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span>  redis-2.8.24-slave1</div><div class="line">src/redis-server  redis.conf</div></pre></td></tr></table></figure></p>
-<p>可以看到如下界面：</p>
-<p><img src="/images/redis/02.png" alt=""> </p>
-<p>表示已经开始和master节点通信。</p>
-<h6 id="3）新开一个终端，同样方式启动slave2。"><a href="#3）新开一个终端，同样方式启动slave2。" class="headerlink" title="3）新开一个终端，同样方式启动slave2。"></a>3）新开一个终端，同样方式启动slave2。</h6><h6 id="4）客户端连接master节点，查看信息"><a href="#4）客户端连接master节点，查看信息" class="headerlink" title="4）客户端连接master节点，查看信息"></a>4）客户端连接master节点，查看信息</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span>  redis-2.8.24</div><div class="line">src/redis-cli </div><div class="line">127.0.0.1:6379&gt; auth fish</div><div class="line">127.0.0.1:6379&gt; info replication</div></pre></td></tr></table></figure>
-<p>可以看到当前连接的是master节点，并且有两个slave节点：</p>
-<p><img src="/images/redis/03.png" alt=""> </p>
-<p>存储一个string到redis：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> name zhangsan</div></pre></td></tr></table></figure></p>
-<p>可以观察到两个slave节点也将信息同步到自己这边：</p>
-<p><img src="/images/redis/04.png" alt=""> </p>
-<h6 id="5）客户端连接slave节点，查看信息"><a href="#5）客户端连接slave节点，查看信息" class="headerlink" title="5）客户端连接slave节点，查看信息"></a>5）客户端连接slave节点，查看信息</h6><p>退出客户端连接：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; quit</div></pre></td></tr></table></figure></p>
-<p>再重新连接一个slave节点：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">src/redis-cli -p 6378</div><div class="line">127.0.0.1:6378&gt; auth fish</div><div class="line">127.0.0.1:6378&gt; info replication</div></pre></td></tr></table></figure></p>
-<p>可以看到当前连接信息和master的信息：</p>
-<p><img src="/images/redis/05.png" alt=""> </p>
-<p>从slave节点上获取存入master节点的值：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6378&gt; get name</div><div class="line"><span class="string">"zhangsan"</span></div></pre></td></tr></table></figure></p>
-<p>至此，主从集群配置完毕。但是如果master节点发生故障，尚不能自动切换到slave节点。下面使用redis sentinel来配置监控集群，便于自动切换。</p>
-<h2 id="三、Sentinel集群配置"><a href="#三、Sentinel集群配置" class="headerlink" title="三、Sentinel集群配置"></a>三、Sentinel集群配置</h2><h5 id="1、Redis-Sentinel"><a href="#1、Redis-Sentinel" class="headerlink" title="1、Redis Sentinel"></a>1、Redis Sentinel</h5><p>Sentinel(哨兵)是用于监控redis集群中Master状态的工具，其已经被集成在redis2.4+的版本中<br>Sentinel作用：<br>1)：Master状态检测 </p>
-<p>2)：如果Master异常，则会进行Master-Slave切换，将其中一个Slave作为Master，将之前的Master作为Slave</p>
-<p>3)：Master-Slave切换后，master_redis.conf、slave_redis.conf和sentinel.conf的内容都会发生改变，即master_redis.conf中会多一行slaveof的配置，sentinel.conf的监控目标会随之调换。</p>
-<h5 id="2、进入redis目录，修改sentinel配置文件"><a href="#2、进入redis目录，修改sentinel配置文件" class="headerlink" title="2、进入redis目录，修改sentinel配置文件"></a>2、进入redis目录，修改sentinel配置文件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span>  redis-2.8.24</div><div class="line">cp  sentinel.conf  sentinel_bak.conf</div></pre></td></tr></table></figure>
-<p>清空原文件内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;sentinel_bak.conf</div></pre></td></tr></table></figure></p>
-<p>存入内容：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">port 26379</div><div class="line"><span class="comment">#master</span></div><div class="line">sentinel monitor master 127.0.0.1 6379 3</div><div class="line">sentinel down-after-milliseconds master 5000</div><div class="line">sentinel auth-pass master fish</div><div class="line">sentinel config-epoch master 8</div><div class="line">sentinel leader-epoch master 9</div></pre></td></tr></table></figure></p>
-<p>其中标红的<code>3</code>：代表有3个sentinel实例</p>
-<h5 id="3、复制两份sentinel-conf，分别命名为sentinel23678-conf，sentinel23677-conf："><a href="#3、复制两份sentinel-conf，分别命名为sentinel23678-conf，sentinel23677-conf：" class="headerlink" title="3、复制两份sentinel.conf，分别命名为sentinel23678.conf，sentinel23677.conf："></a>3、复制两份<code>sentinel.conf</code>，分别命名为<code>sentinel23678.conf</code>，<code>sentinel23677.conf</code>：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cp  sentinel.conf  sentinel23678.conf</div><div class="line">cp  sentinel.conf  sentinel23677.conf</div></pre></td></tr></table></figure>
-<p>并分别修改端口为<code>23678</code>、<code>23677</code></p>
-<h5 id="4、运行redis-sentinel"><a href="#4、运行redis-sentinel" class="headerlink" title="4、运行redis-sentinel"></a>4、运行redis-sentinel</h5><p>开三个终端，分别执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">src/redis-sentinel  sentinel.conf  --sentinel</div><div class="line">src/redis-sentinel sentinel26378.conf --sentinel</div><div class="line">src/redis-sentinel sentinel26377.conf --sentinel</div></pre></td></tr></table></figure></p>
-<p>可以看到启动信息：</p>
-<p><img src="/images/redis/06.png" alt=""> </p>
-<h5 id="5、通过sentinel查看主从信息："><a href="#5、通过sentinel查看主从信息：" class="headerlink" title="5、通过sentinel查看主从信息："></a>5、通过sentinel查看主从信息：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span>  redis-2.8.24</div><div class="line">src/redis-cli  -p  26379</div><div class="line">127.0.0.1:26379&gt; info</div></pre></td></tr></table></figure>
-<p><img src="/images/redis/07.png" alt=""> </p>
-<h2 id="四、测试故障切换配置"><a href="#四、测试故障切换配置" class="headerlink" title="四、测试故障切换配置"></a>四、测试故障切换配置</h2><h5 id="1、停掉master节点"><a href="#1、停掉master节点" class="headerlink" title="1、停掉master节点"></a>1、停掉master节点</h5><p>在master节点的运行终端中，按下Ctrl+C。</p>
-<h5 id="2、观察sentinel的输出信息，会看到已经检测到变化，slave1节点（6378端口）自动切换为master："><a href="#2、观察sentinel的输出信息，会看到已经检测到变化，slave1节点（6378端口）自动切换为master：" class="headerlink" title="2、观察sentinel的输出信息，会看到已经检测到变化，slave1节点（6378端口）自动切换为master："></a>2、观察sentinel的输出信息，会看到已经检测到变化，slave1节点（6378端口）自动切换为master：</h5><p><img src="/images/redis/08.png" alt=""> </p>
-<h5 id="3、观察slave1节点的输出信息，说明它已经切换到master状态："><a href="#3、观察slave1节点的输出信息，说明它已经切换到master状态：" class="headerlink" title="3、观察slave1节点的输出信息，说明它已经切换到master状态："></a>3、观察slave1节点的输出信息，说明它已经切换到master状态：</h5><p><img src="/images/redis/09.png" alt=""> </p>
-<p>至此，Redis的主从集群、故障自动切换机制已经完成。</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/02/redis/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -837,7 +813,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -846,7 +822,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

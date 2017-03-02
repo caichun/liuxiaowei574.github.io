@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Redis," />
 
 
 
@@ -93,7 +93,7 @@ Sentinel1：127.0.0.1，端口：26379
 Sentinel2：127.0.0.1，端口：26378
 Sentinel3：127.0.0.1，端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="清风明月">
+<meta property="og:title" content="Redis主从集群及故障自动切换">
 <meta property="og:url" content="https://liuxiaowei574.github.io/2017/03/02/redis/index.html">
 <meta property="og:site_name" content="清风明月">
 <meta property="og:description" content="Redis官网：https://redis.io/
@@ -113,9 +113,9 @@ Sentinel3：127.0.0.1，端">
 <meta property="og:image" content="https://liuxiaowei574.github.io/images/redis/07.png">
 <meta property="og:image" content="https://liuxiaowei574.github.io/images/redis/08.png">
 <meta property="og:image" content="https://liuxiaowei574.github.io/images/redis/09.png">
-<meta property="og:updated_time" content="2017-03-02T13:28:40.000Z">
+<meta property="og:updated_time" content="2017-03-02T13:40:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="清风明月">
+<meta name="twitter:title" content="Redis主从集群及故障自动切换">
 <meta name="twitter:description" content="Redis官网：https://redis.io/
 一、架构操作系统：Debian 7
 Master：127.0.0.1，端口：6379
@@ -142,7 +142,7 @@ Sentinel3：127.0.0.1，端">
   };
 </script>
 
-  <title>  | 清风明月 </title>
+  <title> Redis主从集群及故障自动切换 | 清风明月 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -312,7 +312,7 @@ Sentinel3：127.0.0.1，端">
             
             
               
-                
+                Redis主从集群及故障自动切换
               
             
           </h1>
@@ -324,11 +324,30 @@ Sentinel3：127.0.0.1，端">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-02T21:31:27+08:00" content="2017-03-02">
+            <time itemprop="dateCreated" datetime="2017-03-02T21:38:02+08:00" content="2017-03-02">
               2017-03-02
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -373,6 +392,7 @@ Sentinel3：127.0.0.1，端">
 <p>Sentinel2：127.0.0.1，端口：26378</p>
 <p>Sentinel3：127.0.0.1，端口：26377</p>
 <h2 id="二、主从配置"><a href="#二、主从配置" class="headerlink" title="二、主从配置"></a>二、主从配置</h2><h5 id="1、下载redis压缩包，并解压，我这里下载的是2-8-24版本："><a href="#1、下载redis压缩包，并解压，我这里下载的是2-8-24版本：" class="headerlink" title="1、下载redis压缩包，并解压，我这里下载的是2.8.24版本："></a>1、下载redis压缩包，并解压，我这里下载的是2.8.24版本：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf redis-2.8.24.tar.gz</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h5 id="2、进入解压目录，修改配置文件redis-conf："><a href="#2、进入解压目录，修改配置文件redis-conf：" class="headerlink" title="2、进入解压目录，修改配置文件redis.conf："></a>2、进入解压目录，修改配置文件<code>redis.conf</code>：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> redis-2.8.24</div><div class="line">vi redis.conf</div></pre></td></tr></table></figure>
 <h5 id="3、其他保持默认，为客户端连接增加密码为fish："><a href="#3、其他保持默认，为客户端连接增加密码为fish：" class="headerlink" title="3、其他保持默认，为客户端连接增加密码为fish："></a>3、其他保持默认，为客户端连接增加密码为<code>fish</code>：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">masterauth fish</div><div class="line">requirepass fish</div></pre></td></tr></table></figure>
 <p>至此，master节点配置完毕。下面开始配置slave节点。</p>
@@ -437,6 +457,12 @@ Sentinel3：127.0.0.1，端">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Redis/" rel="tag">#Redis</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
@@ -475,7 +501,7 @@ Sentinel3：127.0.0.1，端">
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/03/02/redis/"
-           data-title="" data-url="https://liuxiaowei574.github.io/2017/03/02/redis/">
+           data-title="Redis主从集群及故障自动切换" data-url="https://liuxiaowei574.github.io/2017/03/02/redis/">
       </div>
     
   </div>
@@ -528,7 +554,7 @@ Sentinel3：127.0.0.1，端">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -537,7 +563,7 @@ Sentinel3：127.0.0.1，端">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
