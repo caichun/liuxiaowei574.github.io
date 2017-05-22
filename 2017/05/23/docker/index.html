@@ -1,0 +1,781 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Docker," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一、安装docker我安装的是Windows版的DockerToolbox-17.04.0-ce，这个集成了一些常用的工具包。下载地址：DockerToolbox
+安装过程略。安装完，双击桌面的“Docker Quickstart Terminal”启动docker。首次启动时会比较慢，因为要下载默认镜像，耐心等待就好了。我看了下自己的，是下载到：C:\Users\Administrator.do">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows版Docker为Centos镜像安装ssh、vsftpd服务">
+<meta property="og:url" content="https://liuxiaowei574.github.io/2017/05/23/docker/index.html">
+<meta property="og:site_name" content="清风明月">
+<meta property="og:description" content="一、安装docker我安装的是Windows版的DockerToolbox-17.04.0-ce，这个集成了一些常用的工具包。下载地址：DockerToolbox
+安装过程略。安装完，双击桌面的“Docker Quickstart Terminal”启动docker。首次启动时会比较慢，因为要下载默认镜像，耐心等待就好了。我看了下自己的，是下载到：C:\Users\Administrator.do">
+<meta property="og:image" content="https://liuxiaowei574.github.io/images/docker/01.png">
+<meta property="og:image" content="https://liuxiaowei574.github.io/images/docker/02.png">
+<meta property="og:image" content="https://liuxiaowei574.github.io/images/docker/03.png">
+<meta property="og:image" content="https://liuxiaowei574.github.io/images/docker/04.png">
+<meta property="og:updated_time" content="2017-05-22T16:07:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows版Docker为Centos镜像安装ssh、vsftpd服务">
+<meta name="twitter:description" content="一、安装docker我安装的是Windows版的DockerToolbox-17.04.0-ce，这个集成了一些常用的工具包。下载地址：DockerToolbox
+安装过程略。安装完，双击桌面的“Docker Quickstart Terminal”启动docker。首次启动时会比较慢，因为要下载默认镜像，耐心等待就好了。我看了下自己的，是下载到：C:\Users\Administrator.do">
+<meta name="twitter:image" content="https://liuxiaowei574.github.io/images/docker/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Windows版Docker为Centos镜像安装ssh、vsftpd服务 | 清风明月 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?23166dcce4ba74c6f19757cec20de8eb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">清风明月</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">你若盛开，蝴蝶自来。你若精彩，天自安排。</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Qaqo26Wt85SxezGLA75a','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Windows版Docker为Centos镜像安装ssh、vsftpd服务
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-23T00:05:02+08:00" content="2017-05-23">
+              2017-05-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/23/docker/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/23/docker/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、安装docker"><a href="#一、安装docker" class="headerlink" title="一、安装docker"></a>一、安装docker</h2><p>我安装的是Windows版的DockerToolbox-17.04.0-ce，这个集成了一些常用的工具包。<br>下载地址：<a href="https://www.docker.com/products/docker-toolbox" target="_blank" rel="external">DockerToolbox</a></p>
+<p>安装过程略。<br>安装完，双击桌面的“Docker Quickstart Terminal”启动docker。首次启动时会比较慢，因为要下载默认镜像，耐心等待就好了。我看了下自己的，是下载到：C:\Users\Administrator.docker\machine\machines\default\boot2docker.iso，大概40M左右。</p>
+<p>docker启动后会分配一个ip地址：<code>192.168.99.100</code>，这样的话，就可以通过SecureCRT等工具来连接docker了。</p>
+<a id="more"></a>
+<h2 id="二、下载centos镜像"><a href="#二、下载centos镜像" class="headerlink" title="二、下载centos镜像"></a>二、下载centos镜像</h2><p>搜索</p>
+<p><code>docker search centos</code></p>
+<p>下载</p>
+<p><code>docker pull centos</code></p>
+<p>查看本地所有镜像：</p>
+<p><code>docker images</code></p>
+<h2 id="三、为centos镜像安装常用服务"><a href="#三、为centos镜像安装常用服务" class="headerlink" title="三、为centos镜像安装常用服务"></a>三、为centos镜像安装常用服务</h2><h3 id="1、打开镜像，进入容器"><a href="#1、打开镜像，进入容器" class="headerlink" title="1、打开镜像，进入容器"></a>1、打开镜像，进入容器</h3><p><code>docker run -itd 40d8d9466567</code></p>
+<p>40d8d9466567为镜像Id，也可以输入镜像名，如centos</p>
+<p>-d：表示运行于后台，-i表示打开标准输入用于控制台交互，-t表示分配一个tty设备，可以支持终端登录。<br>直接docker run imageId的话，会直接在前台打开并且立刻关闭。这里我们要打开镜像，并进行一些操作。</p>
+<p>下面的2-7、9步操作，都是在打开的容器中进行的，即命令之前的提示符为：<code>[root@f0a02b473067 /]#</code>，而非docker。</p>
+<h3 id="2、设置root口令，以便后面ssh和ftp连接："><a href="#2、设置root口令，以便后面ssh和ftp连接：" class="headerlink" title="2、设置root口令，以便后面ssh和ftp连接："></a>2、设置root口令，以便后面ssh和ftp连接：</h3><p>输入新口令 <code>passwd</code></p>
+<h3 id="3、安装less"><a href="#3、安装less" class="headerlink" title="3、安装less"></a>3、安装less</h3><p><code>yum install -y less</code></p>
+<p>-y代表交互时自动选择y，全自动。</p>
+<h3 id="4、安装ifconfig："><a href="#4、安装ifconfig：" class="headerlink" title="4、安装ifconfig："></a>4、安装ifconfig：</h3><p><code>yum search ifconfig</code></p>
+<p><code>yum install -y net-tools.x86_64</code></p>
+<p>试试ifconfig命令可不可用</p>
+<h3 id="5、安装sshd："><a href="#5、安装sshd：" class="headerlink" title="5、安装sshd："></a>5、安装sshd：</h3><p><code>yum install -y openssh-server</code></p>
+<p>启动sshd：</p>
+<p><code>/usr/sbin/sshd -D</code></p>
+<p>设置sshd服务自动启动：</p>
+<p><code>chkconfig sshd on</code></p>
+<p>停止服务：<code>Ctrl+C</code></p>
+<p>启动sshd如果报错：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Could not load host key: /etc/ssh/ssh_host_rsa_key</div><div class="line">Could not load host key: /etc/ssh/ssh_host_ecdsa_key</div><div class="line">Could not load host key: /etc/ssh/ssh_host_ed25519_key</div></pre></td></tr></table></figure></p>
+<p>则运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t ecdsa <span class="_">-f</span> /etc/ssh/ssh_host_rsa_key  </div><div class="line">ssh-keygen -t ecdsa <span class="_">-f</span>  /etc/ssh/ssh_host_ecdsa_key </div><div class="line">ssh-keygen -t ecdsa <span class="_">-f</span>   /etc/ssh/ssh_host_ed25519_key</div></pre></td></tr></table></figure></p>
+<h3 id="6、安装vsftpd服务："><a href="#6、安装vsftpd服务：" class="headerlink" title="6、安装vsftpd服务："></a>6、安装vsftpd服务：</h3><p>1) 查看是否已经安装vsftpd</p>
+<p><code>rpm -qa | grep vsftpd</code></p>
+<p>如果没有，就安装，并设置开机启动</p>
+<p><code>yum -y install vsftpd</code></p>
+<p><code>chkconfig vsftpd on</code></p>
+<p>2) 配置vsftpd：</p>
+<p><code>vi /etc/vsftpd/vsftpd.conf</code></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#chroot_list_enable=YES</div><div class="line"># (default follows)</div><div class="line">#chroot_list_file=/etc/vsftpd.chroot_list</div><div class="line">改为</div><div class="line">chroot_list_enable=YES</div><div class="line"># (default follows)</div><div class="line">chroot_list_file=/etc/vsftpd/chroot_list</div><div class="line"></div><div class="line">增加：</div><div class="line">local_root=/ftp</div><div class="line">allow_writeable_chroot=YES</div></pre></td></tr></table></figure>
+<p>保存。</p>
+<p>3) 配置ftp连接用户</p>
+<p><code>vi /etc/vsftpd/chroot_list</code></p>
+<p>每一行为一个允许连接的用户名，这里输入root，并保存</p>
+<p>4) 创建/ftp作为ftp的根目录：</p>
+<p><code>mkdir /ftp</code></p>
+<p><code>chmod -R a+w /ftp</code></p>
+<p>5) 设置root用户可以登录：</p>
+<p><code>vi /etc/vsftpd/user_list</code></p>
+<p><code>vi /etc/vsftpd/ftpusers</code></p>
+<p>修改上述两个文件，把root那一行删除或者注释掉。</p>
+<p><strong>注意：使用ftp客户端连接容器时，要修改传输模式为： 主动传输</strong></p>
+<h3 id="7、安装service服务："><a href="#7、安装service服务：" class="headerlink" title="7、安装service服务："></a>7、安装service服务：</h3><p>docker提供的centos镜像并没有service指令，即指令文件实际不存在：/sbin/service</p>
+<p>查看有无安装相关软件：</p>
+<p><code>yum list | grep initscripts</code></p>
+<p>查找软件：</p>
+<p><code>rpm -qa | grep initscripts</code></p>
+<p>安装：</p>
+<p><code>yum install initscripts</code></p>
+<p>查看指令文件：</p>
+<p><code>ll /sbin/service</code></p>
+<h3 id="8、保存为新镜像"><a href="#8、保存为新镜像" class="headerlink" title="8、保存为新镜像"></a>8、保存为新镜像</h3><p>注意，上述任何对镜像的改动，如果想永久保留，一定要进行保存，否则镜像一旦关闭，下次启动时又回到原来的配置。前面的改动全都丢了。</p>
+<p>在docker环境或新打开一个SecureCRT连接docker，查看正在运行的镜像：</p>
+<p><code>docker ps</code></p>
+<p>保存为新镜像，命令：docker commit  容器Id（非镜像Id）  镜像名</p>
+<p><code>docker commit 75955f546d00 mycentos-ssh-vsftpd</code></p>
+<h3 id="9、退出容器"><a href="#9、退出容器" class="headerlink" title="9、退出容器"></a>9、退出容器</h3><h2 id="四、运行新镜像并测试"><a href="#四、运行新镜像并测试" class="headerlink" title="四、运行新镜像并测试"></a>四、运行新镜像并测试</h2><p>上面为新镜像安装了ssh、vsftpd服务，但要想在容器外部连接并登录，要在docker运行该镜像的时候，进行端口映射。</p>
+<p>另外，还要启动dbus-daemon服务，以保证容器中的service指令可以正常使用。具体可以参考：<br><a href="http://welcomeweb.blog.51cto.com/10487763/1735251" target="_blank" rel="external">http://welcomeweb.blog.51cto.com/10487763/1735251</a></p>
+<p>最终运行镜像的指令是：</p>
+<p><code>docker run --privileged -itd -e &quot;container=docker&quot;  -v /sys/fs/cgroup:/sys/fs/cgroup -p 50001:22 -p 50000:21 mycentos-ssh-vsftpd  /usr/sbin/init</code></p>
+<p>上面将容器内的ssh服务端口22，映射到docker的50001，ftp端口21映射到docker的50000。mycentos-ssh-vsftpd是我的镜像名。</p>
+<p>下面就可以通过SecureCRT和FileZilla（修改传输模式为：主动传输）进行连接了。</p>
+<p>SecureCRT：</p>
+<p><img src="/images/docker/01.png" alt=""><br><img src="/images/docker/02.png" alt=""> </p>
+<p>FileZilla：</p>
+<p><img src="/images/docker/03.png" alt=""><br><img src="/images/docker/04.png" alt=""> </p>
+<p><strong>还是那句话，对容器进行的任何修改，如想保存，都必须在docker里进行保存。否则下次启动都会丢失。包括ftp连接后上传进去的文件。</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag">#Docker</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/12/openssl/" rel="next" title="Windows版OpenSSL简单应用">
+                <i class="fa fa-chevron-left"></i> Windows版OpenSSL简单应用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/23/docker/"
+           data-title="Windows版Docker为Centos镜像安装ssh、vsftpd服务" data-url="https://liuxiaowei574.github.io/2017/05/23/docker/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Fish" />
+          <p class="site-author-name" itemprop="name">Fish</p>
+          <p class="site-description motion-element" itemprop="description">清风明月的博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liuxiaowei574" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/1196457615" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装docker"><span class="nav-number">1.</span> <span class="nav-text">一、安装docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、下载centos镜像"><span class="nav-number">2.</span> <span class="nav-text">二、下载centos镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、为centos镜像安装常用服务"><span class="nav-number">3.</span> <span class="nav-text">三、为centos镜像安装常用服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、打开镜像，进入容器"><span class="nav-number">3.1.</span> <span class="nav-text">1、打开镜像，进入容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、设置root口令，以便后面ssh和ftp连接："><span class="nav-number">3.2.</span> <span class="nav-text">2、设置root口令，以便后面ssh和ftp连接：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、安装less"><span class="nav-number">3.3.</span> <span class="nav-text">3、安装less</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、安装ifconfig："><span class="nav-number">3.4.</span> <span class="nav-text">4、安装ifconfig：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、安装sshd："><span class="nav-number">3.5.</span> <span class="nav-text">5、安装sshd：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、安装vsftpd服务："><span class="nav-number">3.6.</span> <span class="nav-text">6、安装vsftpd服务：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、安装service服务："><span class="nav-number">3.7.</span> <span class="nav-text">7、安装service服务：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、保存为新镜像"><span class="nav-number">3.8.</span> <span class="nav-text">8、保存为新镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9、退出容器"><span class="nav-number">3.9.</span> <span class="nav-text">9、退出容器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、运行新镜像并测试"><span class="nav-number">4.</span> <span class="nav-text">四、运行新镜像并测试</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Fish</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 访问人数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人次</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i> 总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liuxiaowei574"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
